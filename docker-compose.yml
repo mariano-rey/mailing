@@ -1,0 +1,37 @@
+version: '3.1'
+volumes:
+  mongo_data:
+services:
+  backend:
+    restart: unless-stopped
+    image: mailing_backend:latest
+    ports:
+      - 5050:5050
+    volumes:
+      - ./backend:/user/src/app
+    links:
+      - mongo
+    command: yarn dev
+    tty: true
+    stdin_open: true
+
+  frontend:
+    restart: unless-stopped
+    image: mailing_frontend:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/usr/src/app
+    links:
+      - backend
+    command: yarn dev
+    tty: true
+    stdin_open: true
+
+  mongo:
+    restart: unless-stopped
+    image: mongo
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - 27017:27017

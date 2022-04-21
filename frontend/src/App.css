@@ -1,0 +1,23 @@
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #205bb4;
+  color: white;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
+
+.flexeado {
+  display: flex;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
